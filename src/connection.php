@@ -2,9 +2,10 @@
 
 
 session_start();
-require_once(dirname(__FILE__)."/config.php");//dirname zawsze sie odwoluje do poprawnego pliku
-require_once(dirname(__FILE__)."/User.php");
 
+require_once (dirname(__FILE__) . '/config.php');
+require_once (dirname(__FILE__) . '/User.php');
+require_once (dirname(__FILE__) . '/Product.php');
 
 $conn = new mysqli($dbHost, $dbUsername, $dbPassword, $dbBaseName);
 
@@ -13,5 +14,5 @@ if($conn->connect_errno){//wypisuje nr bledu
 }
 
 
-$user1 = User::RegisterUser("Ela23", "ela23@gmail.com", "ela23", "ela23", "gdansk");
-var_dump($user1);
+$user1 = User::RegisterUser("Ela23", "ela23@gmail.com", "ela23", "ela23", "cebertowicza", 15, '80-800', 'gdansk');
+
