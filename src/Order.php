@@ -15,4 +15,10 @@ CREATE TABLE Orders(
 
 class Order{
 
+    static private $connection;
+
+    static public function SetConnection(mysqli $newConnection) {
+        Order::$connection = $newConnection;
+    }
+
 }

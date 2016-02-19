@@ -31,7 +31,6 @@ class Product {
     private $name;
     private $itemDesc;
     private $quantity;
-
     private $price;
 
     static private $connection;

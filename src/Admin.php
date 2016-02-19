@@ -13,4 +13,10 @@ CREATE TABLE Admin(
 
 class Admin{
 
+    static private $connection;
+
+    static public function SetConnection(mysqli $newConnection) {
+        Admin::$connection = $newConnection;
+    }
+
 }
