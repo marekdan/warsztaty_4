@@ -8,7 +8,20 @@ CREATE TABLE Product(
     description varchar(255),
     price float,
     PRIMARY KEY (id)
-    );
+);
+
+CREATE TABLE ProductOrder(
+    id int AUTO_INCREMENT,
+    product_id int NOT NULL,
+    order_id int NOT NULL,
+    quantity int,
+    PRIMARY KEY (id),
+    UNIQUE KEY (product_id, order_id),
+    FOREIGN KEY (product_id) REFERENCES Product(id)
+    ON DELETE CASCADE,
+    FOREIGN KEY (order_id) REFERENCES Orders (id)
+    ON DELETE CASCADE
+);
 
  */
 
@@ -17,6 +30,8 @@ class Product {
     private $id;
     private $name;
     private $itemDesc;
+    private $quantity;
+
     private $price;
 
     static private $connection;
@@ -25,10 +40,11 @@ class Product {
         Product::$connection = $newConnection;
     }
 
-    public function __construct($newId, $newName,$newItemDesc, $newPrice) {
+    public function __construct($newId, $newName, $newItemDesc, $newPrice) {
         $this->id = intval($newId);
         $this->setName($newName);
         $this->setItemDesc($newItemDesc);
+        $this->
         $this->setPrice($newPrice);
     }
 
@@ -45,6 +61,10 @@ class Product {
         return $this->itemDesc;
     }
 
+    public function getQuantity() {
+        return $this->quantity;
+    }
+
     public function getPrice() {
         return $this->price;
     }
@@ -59,6 +79,10 @@ class Product {
 
     public function setPrice($newPrice) {
         $this->price = $newPrice;
+    }
+
+    public function setQuantity($quantity) {
+        $this->quantity = $quantity;
     }
 
 }
