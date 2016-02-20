@@ -39,6 +39,10 @@ class Product {
         Product::$connection = $newConnection;
     }
 
+    static public function AddProduct(){
+
+    }
+
     public function __construct($newId, $newName, $newItemDesc, $newPrice) {
         $this->id = intval($newId);
         $this->setName($newName);
@@ -46,7 +50,6 @@ class Product {
         $this->
         $this->setPrice($newPrice);
     }
-
 
     public function getId() {
         return $this->id;

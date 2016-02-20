@@ -35,16 +35,7 @@ require_once ('src/connection.php');
             Zarządzanie zamównieniami
         </div>
     </a>
-    <a href="panelRegisterAdmin.php">
-        <div>
-            Zarejestruj Admina
-        </div>
-    </a>
-    <a href="panelLoginAdmin.php">
-        <div>
-            Zaloguj na Admina
-        </div>
-    </a>
+
     <a href="panelLogoutAdmin.php">
         <div>
             Wyloguj
