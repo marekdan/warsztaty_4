@@ -30,7 +30,6 @@ class Product {
     private $id;
     private $name;
     private $itemDesc;
-    private $quantity;
     private $price;
 
     static private $connection;
@@ -49,11 +48,26 @@ class Product {
         return false;
     }
 
+    static public function LoadAllProducts() {
+        $ret = [];
+        $sql = "SELECT * FROM Product";
+        $result = self::$connection->query($sql);
+        if ($result !== false) {
+            while ($row = $result->fetch_assoc()) {
+                $product = new Product($row['id'], $row['name'], $row['description'], $row['price']);
+                $ret[] = $product;
+            }
+
+            return $ret;
+        }
+
+        return false;
+    }
+
     public function __construct($newId, $newName, $newItemDesc, $newPrice) {
         $this->id = intval($newId);
         $this->setName($newName);
         $this->setItemDesc($newItemDesc);
-        $this->
         $this->setPrice($newPrice);
     }
 
@@ -67,10 +81,6 @@ class Product {
 
     public function getItemDesc() {
         return $this->itemDesc;
-    }
-
-    public function getQuantity() {
-        return $this->quantity;
     }
 
     public function getPrice() {
@@ -87,10 +97,6 @@ class Product {
 
     public function setPrice($newPrice) {
         $this->price = $newPrice;
-    }
-
-    public function setQuantity($quantity) {
-        $this->quantity = $quantity;
     }
 
 }

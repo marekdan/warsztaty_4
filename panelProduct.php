@@ -34,3 +34,9 @@ endif;
 if($_SERVER['REQUEST_METHOD'] == 'POST' && $_POST['actionType'] == 'addProduct'){
     Product::AddProduct($_POST['name'], $_POST['itemDesc'], $_POST['price']);
 }
+
+echo 'Lista wszystkich produktów: <br>';
+
+foreach(Product::LoadAllProducts() as $product){
+    echo 'Nazwa produktu to: ' . $product->getName() . ' Cena produktu: ' . $product->getPrice() . ' Opis produktu: ' . $product->getItemDesc() . '<br>';
+}
