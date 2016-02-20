@@ -39,8 +39,14 @@ class Product {
         Product::$connection = $newConnection;
     }
 
-    static public function AddProduct(){
+    static public function AddProduct($newName, $newDesc, $newPrice) {
+        $sql = "INSERT INTO Product (name, description, price) VALUES ('$newName', '$newDesc', '$newPrice')";
+        $result = self::$connection->query($sql);
+        if ($result === true) {
+            return true;
+        }
 
+        return false;
     }
 
     public function __construct($newId, $newName, $newItemDesc, $newPrice) {

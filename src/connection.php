@@ -16,3 +16,4 @@ if ($conn->connect_errno) {
 }
 
 Admin::SetConnection($conn);
+Product::SetConnection($conn);
