@@ -14,9 +14,7 @@ CREATE TABLE Admin(
 class Admin {
 
     private $id;
-    private $name;
     private $email;
-    private $password;
 
     static private $connection;
 
@@ -24,31 +22,34 @@ class Admin {
         Admin::$connection = $newConnection;
     }
 
-    static public function RegisterAdmin($newEmail, $password1, $password2){
+    static public function RegisterAdmin($newEmail, $password1, $password2) {
 
-        if($password1 !== $password2){
+        if ($password1 !== $password2) {
             return false;
         }
 
         $options = [
-            'cost'=>11,
-            'salt'=>mcrypt_create_iv(22, MCRYPT_DEV_URANDOM)
+            'cost' => 11,
+            'salt' => mcrypt_create_iv(22, MCRYPT_DEV_URANDOM)
         ];
+
         $hashedPassword = password_hash($password1, PASSWORD_BCRYPT, $options);
 
-        $sql = "INSERT INTO Users(email, password) VALUES('$newEmail', '$hashedPassword')";
+        $sql = "INSERT INTO Admin(email, password) VALUES('$newEmail', '$hashedPassword')";
 
         $result = self::$connection->query($sql);
-        if($result === TRUE) {
-            $newUser = new User(self::$connection->insert_id, $newEmail);
-            return $newUser;
+        if ($result === true) {
+            $newAdmin = new Admin(self::$connection->insert_id, $newEmail);
+
+            return $newAdmin;
         }
+
         return false;
 
     }
 
     static public function LogInAdmin($email, $password) {
-        $sql = "SELECT * FROM Users WHERE email like '$email'";
+        $sql = "SELECT * FROM Admin WHERE email like '$email'";
         $result = self::$connection->query($sql);
 
         if ($result !== false) {
@@ -58,10 +59,9 @@ class Admin {
                 $isPasswordOk = password_verify($password, $row["password"]);
 
                 if ($isPasswordOk === true) {
-                    $user = new User($row["id"], $row["name"], $row["email"], $row["streetNumber"], $row["houseNumber"],
-                        $row["postCode"], $row["city"]);
+                    $admin = new Admin($row["id"], $row["email"]);
 
-                    return $user;
+                    return $admin;
                 }
             }
         }
@@ -69,4 +69,20 @@ class Admin {
         return false;
     }
 
+    public function __construct($newId, $newEmail) {
+        $this->id = intval($newId);
+        $this->setEmail($newEmail);
+    }
+
+    public function setEmail($newEmail) {
+        $this->email = $newEmail;
+    }
+
+    public function getId() {
+        return $this->id;
+    }
+
+    public function getEmail() {
+        return $this->email;
+    }
 }

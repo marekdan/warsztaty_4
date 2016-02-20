@@ -1,3 +1,9 @@
+<?php
+
+require_once ('src/connection.php');
+
+?>
+
 <!DOCTYPE html>
 <html lang="pl-PL">
 <head>
@@ -27,6 +33,21 @@
     <a href="panelOrder.php">
         <div>
             Zarządzanie zamównieniami
+        </div>
+    </a>
+    <a href="panelRegisterAdmin.php">
+        <div>
+            Zarejestruj Admina
+        </div>
+    </a>
+    <a href="panelLoginAdmin.php">
+        <div>
+            Zaloguj na Admina
+        </div>
+    </a>
+    <a href="panelLogoutAdmin.php">
+        <div>
+            Wyloguj
         </div>
     </a>
     <hr>

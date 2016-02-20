@@ -1,20 +1,23 @@
 <?php
 
-require_once ('panelHeader.php');
-
+require_once('panelHeader.php');
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-    $admin = Admin::RegisterAdmin($_POST['email'], $_POST['password1'], $_POST['password2']);
+
+    $admin = Admin::LogInAdmin($_POST['email'], $_POST['password']);
     if ($admin !== false) {
         $_SESSION['userId'] = $admin->getId();
         $_SESSION['userType'] = 'admin'; //określa typ zalogowanego użytkownika
-    }
-    else {
-        echo 'Złe dane rejestracji';
+        echo 'Zalogowano';
     }
 }
 
+if(($_SESSION['userType']) == 'admin'){
+    echo 'Zalogowano na konto administratora, aby zalogwać się na inne wyloguj się';
+}
+
 ?>
+
 
 <form method="POST">
     <label>
@@ -24,13 +27,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     <br>
     <label>
         Hasło:
-        <input type="password" name="password1">
+        <input type="password" name="password">
     </label>
     <br>
-    <label>
-        Hasło 2:
-        <input type="password" name="password2">
-    </label>
-    <br>
-    <input type="submit" value="Zarejestruj">
+    <input type="submit" value="Zaloguj">
 </form>
