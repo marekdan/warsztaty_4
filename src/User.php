@@ -1,3 +1,4 @@
+
 <?php
 
 /*
@@ -15,12 +16,23 @@ CREATE TABLE Users(
  */
 
 /*Panel użytkownika: Strona ta ma mieć informacje o użytkowniku, dawać opcje zmiany tych informacji,
-pokazywać wszystkie poprzednie zakupy tego użytkownika.  Powinna być możliwość zobaczenia tylko swojej własnej strony!*/
+pokazywać wszystkie poprzednie zakupy tego użytkownika.  Powinna być możliwość zobaczenia tylko swojej własnej strony!
+
+/^Dodaj do klasy User funkcję zwracające jego koszyk i wszystkie zamówienie (poza koszykiem). */
 
 class User {
+
+    private $id;
+    private $name;
+    private $email;
+    private $streetName;
+    private $houseNumber;
+    private $postCode;
+    private $city;
+
     static private $connection;
 
-    static public function SetConnection(mysqli $newConnection){//z duzej litery funkcja bo jest statyczna
+    static public function SetConnection(mysqli $newConnection){
         User::$connection = $newConnection;
     }
 
@@ -60,13 +72,39 @@ class User {
                 $isPasswordOk = password_verify($password, $row["password"]);
 
                 if($isPasswordOk === true){
-                    $user = new User($row["id"], $row["name"], $row["email"], $row["streetNumber"], $row["houseNumber"],
+                    $user = new User($row["id"], $row["name"], $row["email"], $row["streetName"], $row["houseNumber"],
                     $row["postCode"], $row["city"]);
                     return $user;
                 }
             }
         }
         return false;
+    }
+
+    static public function GetUserById($idToLoad){
+        $sql = "SELECT * FROM Users WHERE id= $idToLoad";
+
+        $result = self::$connection->query($sql);
+        if($result !== FALSE) {
+            if ($result->num_rows === 1) {
+                $row = $result->fetch_assoc();
+                $user = new User($row["id"], $row["name"], $row["email"], $row["streetName"], $row["houseNumber"],
+                    $row["postCode"], $row["city"]);
+                return $user;
+            }
+        }
+        return false;
+
+    }
+
+    public function __construct($newId, $newName, $newEmail, $newStreetName, $newHouseNumber, $newPostCode, $newCity){
+        $this->id = intval($newId);
+        $this->name = $newName;
+        $this->email = $newEmail;
+        $this->setStreetName($newStreetName);
+        $this->setHouseNumber($newHouseNumber);
+        $this->setPostCode($newPostCode);
+        $this->setCity($newCity);
     }
 
     public function getId()
@@ -125,13 +163,67 @@ class User {
     {
         $this->city = $city;
     }
-    private $id;
-    private $name;
-    private $email;
-    private $streetName;
-    private $houseNumber;
-    private $postCode;
-    private $city;
+
+    //Changing address
+    public function saveTODBstreetName(){
+        $sql= "UPDATE Users SET streetName='$this->streetName' WHERE id= $this->id";
+
+
+        $result = User::$connection->query($sql);
+        if($result === TRUE){
+            return TRUE;
+        }
+        return FALSE;
+    }
+
+    public function saveTODBhouseNumber(){
+        $sql= "UPDATE Users SET houseNumber='$this->houseNumber' WHERE id= $this->id";
+
+
+        $result = User::$connection->query($sql);
+        if($result === TRUE){
+            return TRUE;
+        }
+        return FALSE;
+    }
+
+    public function saveTODBpostCode(){
+        $sql= "UPDATE Users SET postCode='$this->postCode' WHERE id= $this->id";
+
+
+        $result = User::$connection->query($sql);
+        if($result === TRUE){
+            return TRUE;
+        }
+        return FALSE;
+    }
+
+    public function saveTODBcity(){
+        $sql= "UPDATE Users SET city='$this->city' WHERE id= $this->id";
+
+
+        $result = User::$connection->query($sql);
+        if($result === TRUE){
+            return TRUE;
+        }
+        return FALSE;
+    }
+
+    public function loadAllOrders(){
+        $ret = [];
+        $sql = "SELECT * FROM Orders WHERE user_id = ($this->id)";
+        $result = self::$connection->query($sql);
+        if($result !== false) {
+            if($result->num_rows>0) {
+                while($row = $result->fetch_assoc()){
+                    $order= new Order($row['id'], $row['user_id'], $row['orderStatus']);
+                    $ret[] = $order;
+                }
+            }
+        }
+        return $ret;
+    }
 
 }
+
 

@@ -1,7 +1,7 @@
 <html>
 <head>
-    <link rel="stylesheet" href="http://s3.amazonaws.com/codecademy-content/courses/ltp/css/bootstrap.css">
-    <link rel="stylesheet" href="CSS/main.css">
+
+    <link rel="stylesheet" href="css/main.css">
 
 </head>
 
@@ -19,7 +19,6 @@
 
 require_once("./src/connection.php");
 
-//jezeli uzytkownik jest zalogowany to nie powinien miec dostepu do loginu i rejestracji dolaczyc to
 if($_SERVER["REQUEST_METHOD"] === "POST") {
     $user = User::LogInUser($_POST['email'], $_POST['password']);
 
