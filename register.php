@@ -1,4 +1,3 @@
-<<<<<<< HEAD
 <?php
 
 require_once("./src/connection.php");
@@ -8,7 +7,7 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
         $_POST['streetName'], $_POST['houseNumber'], $_POST['postCode'], $_POST['city']);
 
     if ($user !== False) {
-//  session_start();
+
         $_SESSION['userId'] = $user->getId();
         header("Location: showUser.php");
     } else {
@@ -80,5 +79,3 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
 
 
 
-=======
->>>>>>> ef37e1c4102a5a3f8e1d59418cb2ba96b971c6eb

@@ -1,4 +1,4 @@
-<html>
+ycd<html>
 <head>
 
     <link rel="stylesheet" href="css/main.css">
@@ -24,7 +24,6 @@ if($_SERVER["REQUEST_METHOD"] === "POST") {
 
     if ($user !== False) {
 
-//        session_start();
         $_SESSION['userId'] = $user->getId();
         header("Location: showUser.php");
     }

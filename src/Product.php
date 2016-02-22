@@ -33,7 +33,7 @@ class Product {
     private $itemDesc;
     private $price;
     private $quantity;
-    
+
     static private $connection;
 
     static public function SetConnection(mysqli $newConnection) {
