@@ -11,7 +11,6 @@ CREATE TABLE Admin(
 
 */
 
-
 class Admin {
 
     private $id;

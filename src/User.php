@@ -15,8 +15,8 @@ CREATE TABLE Users(
     PRIMARY KEY(id)
  );
 
-<<<<<<< HEAD
-/*Panel użytkownika: Strona ta ma mieć informacje o użytkowniku, dawać opcje zmiany tych informacji,
+
+Panel użytkownika: Strona ta ma mieć informacje o użytkowniku, dawać opcje zmiany tych informacji,
 pokazywać wszystkie poprzednie zakupy tego użytkownika.  Powinna być możliwość zobaczenia tylko swojej własnej strony!
 
 /^Dodaj do klasy User funkcję zwracające jego koszyk i wszystkie zamówienie (poza koszykiem). */

@@ -1,10 +1,7 @@
 <?php
 
 /*
-<<<<<<< HEAD
-=======
 
->>>>>>> ef37e1c4102a5a3f8e1d59418cb2ba96b971c6eb
 CREATE TABLE Orders(
     id int AUTO_INCREMENT,
     user_id int NOT NULL,
@@ -14,7 +11,6 @@ CREATE TABLE Orders(
     ON DELETE CASCADE
 );
 
-<<<<<<< HEAD
 //Moim zdaniem order powinien miec post date jak tak dluzej sie zastanowilam
 
 
@@ -23,14 +19,17 @@ Stwórz klasę da zamówienia. Ma ona posiadać relacje 1-wiele z użytkownikiem
 Poza tym ma mieć swój stan (niezłożone, złożone, opłacone, zrealizowane).
 Dodaj do klasy User funkcję zwracające jego koszyk i wszystkie zamówienie (poza koszykiem). */
 
+
 class Order
 {
+
 
     private $id;
     private $userId;
     private $orderStatus;
 
     static private $connection;
+
 
     static public function SetConnection(mysqli $newConnection)
     {
@@ -66,4 +65,3 @@ class Order
     }
 
 }
-
