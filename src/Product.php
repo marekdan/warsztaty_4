@@ -7,6 +7,7 @@ CREATE TABLE Product(
     name varchar(255),
     description varchar(255),
     price float,
+    quantity int,
     PRIMARY KEY (id)
 );
 
@@ -30,18 +31,15 @@ class Product {
     private $id;
     private $name;
     private $itemDesc;
-    private $quantity;
-
     private $price;
-
+    private $quantity;
+    
     static private $connection;
 
     static public function SetConnection(mysqli $newConnection) {
         Product::$connection = $newConnection;
     }
 
-<<<<<<< HEAD
-=======
     static public function AddProduct($newName, $newDesc, $newPrice) {
         $sql = "INSERT INTO Product (name, description, price) VALUES ('$newName', '$newDesc', '$newPrice')";
         $result = self::$connection->query($sql);
@@ -58,7 +56,7 @@ class Product {
         $result = self::$connection->query($sql);
         if ($result !== false) {
             while ($row = $result->fetch_assoc()) {
-                $product = new Product($row['id'], $row['name'], $row['description'], $row['price']);
+                $product = new Product($row['id'], $row['name'], $row['description'], $row['price'], $row['quantity']);
                 $ret[] = $product;
             }
 
@@ -68,13 +66,12 @@ class Product {
         return false;
     }
 
->>>>>>> ef37e1c4102a5a3f8e1d59418cb2ba96b971c6eb
-    public function __construct($newId, $newName, $newItemDesc, $newPrice) {
+    public function __construct($newId, $newName, $newItemDesc, $newPrice, $newQuantity) {
         $this->id = intval($newId);
         $this->setName($newName);
         $this->setItemDesc($newItemDesc);
-        $this->
         $this->setPrice($newPrice);
+        $this->setQuantity($newQuantity);
     }
 
     public function getId() {
@@ -89,12 +86,12 @@ class Product {
         return $this->itemDesc;
     }
 
-    public function getQuantity() {
-        return $this->quantity;
-    }
-
     public function getPrice() {
         return $this->price;
+    }
+
+    public function getQuantity() {
+        return $this->quantity;
     }
 
     public function setName($newName) {
@@ -109,7 +106,8 @@ class Product {
         $this->price = $newPrice;
     }
 
-    public function setQuantity($quantity) {
+    public function setQuantity($quantity)
+    {
         $this->quantity = $quantity;
     }
 
