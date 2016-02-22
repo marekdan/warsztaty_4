@@ -40,6 +40,35 @@ class Product {
         Product::$connection = $newConnection;
     }
 
+<<<<<<< HEAD
+=======
+    static public function AddProduct($newName, $newDesc, $newPrice) {
+        $sql = "INSERT INTO Product (name, description, price) VALUES ('$newName', '$newDesc', '$newPrice')";
+        $result = self::$connection->query($sql);
+        if ($result === true) {
+            return true;
+        }
+
+        return false;
+    }
+
+    static public function LoadAllProducts() {
+        $ret = [];
+        $sql = "SELECT * FROM Product";
+        $result = self::$connection->query($sql);
+        if ($result !== false) {
+            while ($row = $result->fetch_assoc()) {
+                $product = new Product($row['id'], $row['name'], $row['description'], $row['price']);
+                $ret[] = $product;
+            }
+
+            return $ret;
+        }
+
+        return false;
+    }
+
+>>>>>>> ef37e1c4102a5a3f8e1d59418cb2ba96b971c6eb
     public function __construct($newId, $newName, $newItemDesc, $newPrice) {
         $this->id = intval($newId);
         $this->setName($newName);
@@ -47,7 +76,6 @@ class Product {
         $this->
         $this->setPrice($newPrice);
     }
-
 
     public function getId() {
         return $this->id;

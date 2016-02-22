@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 <?php
 
 require_once("./src/connection.php");
@@ -79,3 +80,5 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
 
 
 
+=======
+>>>>>>> ef37e1c4102a5a3f8e1d59418cb2ba96b971c6eb

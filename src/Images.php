@@ -16,4 +16,13 @@ CREATE TABLE Images(
 
 class Images{
 
+<<<<<<< HEAD
+=======
+    static private $connection;
+
+    static public function SetConnection(mysqli $newConnection) {
+        Images::$connection = $newConnection;
+    }
+
+>>>>>>> ef37e1c4102a5a3f8e1d59418cb2ba96b971c6eb
 }

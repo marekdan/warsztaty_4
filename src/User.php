@@ -2,6 +2,7 @@
 <?php
 
 /*
+
 CREATE TABLE Users(
     id int AUTO_INCREMENT,
     name varchar(60),
@@ -13,12 +14,15 @@ CREATE TABLE Users(
     city char,
     PRIMARY KEY(id)
  );
- */
 
+<<<<<<< HEAD
 /*Panel użytkownika: Strona ta ma mieć informacje o użytkowniku, dawać opcje zmiany tych informacji,
 pokazywać wszystkie poprzednie zakupy tego użytkownika.  Powinna być możliwość zobaczenia tylko swojej własnej strony!
 
 /^Dodaj do klasy User funkcję zwracające jego koszyk i wszystkie zamówienie (poza koszykiem). */
+=======
+ */
+>>>>>>> ef37e1c4102a5a3f8e1d59418cb2ba96b971c6eb
 
 class User {
 
