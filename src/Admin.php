@@ -11,10 +11,6 @@ CREATE TABLE Admin(
 
 */
 
-<<<<<<< HEAD
-class Admin{
-
-=======
 class Admin {
 
     private $id;
@@ -89,5 +85,5 @@ class Admin {
     public function getEmail() {
         return $this->email;
     }
->>>>>>> ef37e1c4102a5a3f8e1d59418cb2ba96b971c6eb
+
 }

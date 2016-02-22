@@ -1,4 +1,3 @@
-<<<<<<< HEAD
 <?php
 
 require_once("./src/connection.php");
@@ -7,11 +6,11 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
     $user = User::RegisterUser($_POST['name'], $_POST['email'], $_POST['password1'], $_POST['password2'],
         $_POST['streetName'], $_POST['houseNumber'], $_POST['postCode'], $_POST['city']);
 
-    if ($user !== False) {
-//  session_start();
+    if ($user !== false) {
         $_SESSION['userId'] = $user->getId();
         header("Location: showUser.php");
-    } else {
+    }
+    else {
         echo('Wrong data');
     }
 }
@@ -58,7 +57,7 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
     <br>
     <label>
         Street name
-    <input type="text" name="streetName">
+        <input type="text" name="streetName">
     </label>
     <br>
     <label>
@@ -77,8 +76,3 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
     </label>
     <input type="submit" name="submit">
 </form>
-
-
-
-=======
->>>>>>> ef37e1c4102a5a3f8e1d59418cb2ba96b971c6eb
