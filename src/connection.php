@@ -16,10 +16,8 @@ if($conn->connect_errno){
     die('db connection not initialized properly' . $conn->connect_errno);
 }
 
-
 User::SetConnection($conn);
 Order::SetConnection($conn);
 Admin::SetConnection($conn);
 Product::SetConnection($conn);
 Messages::SetConnection($conn);
-

@@ -1,5 +1,5 @@
 <?php
-
+ob_start();
 require_once("./src/connection.php");
 
 if ($_SERVER["REQUEST_METHOD"] === "POST") {
@@ -16,7 +16,7 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
         echo('Wrong data');
     }
 }
-
+ob_end_flush();
 ?>
 
 <html>

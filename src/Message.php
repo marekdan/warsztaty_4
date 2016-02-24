@@ -1,4 +1,5 @@
 <?php
+
 /*
 
 CREATE TABLE Messages(

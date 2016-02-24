@@ -1,8 +1,9 @@
-ycd<html>
+<?php
+ob_start();
+?>
+<html>
 <head>
-
     <link rel="stylesheet" href="css/main.css">
-
 </head>
 
 <body>
@@ -12,10 +13,8 @@ ycd<html>
 
 </ul>
 </body>
-
+</html>
 <?php
-
-
 
 require_once("./src/connection.php");
 
@@ -35,7 +34,6 @@ if($_SERVER["REQUEST_METHOD"] === "POST") {
 
 ?>
 
-
 <form action="login.php" method="post">
 
     <label>
@@ -51,4 +49,6 @@ if($_SERVER["REQUEST_METHOD"] === "POST") {
     <br>
     <input type="submit" value="login">
 </form>
-
+<?php
+ob_end_flush();
+?>
