@@ -14,12 +14,13 @@ CREATE TABLE Images(
  */
 
 
-class Images{
+class Images
+{
 
     static private $connection;
 
-    static public function SetConnection(mysqli $newConnection) {
+    static public function SetConnection(mysqli $newConnection)
+    {
         Images::$connection = $newConnection;
     }
-
 }

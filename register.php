@@ -6,7 +6,9 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
     $user = User::RegisterUser($_POST['name'], $_POST['email'], $_POST['password1'], $_POST['password2'],
         $_POST['streetName'], $_POST['houseNumber'], $_POST['postCode'], $_POST['city']);
 
+
     if ($user !== false) {
+
         $_SESSION['userId'] = $user->getId();
         header("Location: showUser.php");
     }
@@ -75,4 +77,8 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
         <input type="text" name="city">
     </label>
     <input type="submit" name="submit">
+
 </form>
+
+
+
