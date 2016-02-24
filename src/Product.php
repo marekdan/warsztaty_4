@@ -40,6 +40,19 @@ class Product {
         Product::$connection = $newConnection;
     }
 
+    static public function GetProductById($id) {
+        $sql = "SELECT * FROM Product WHERE id='$id'";
+        $result = self::$connection->query($sql);
+        if ($result !== false) {
+            $row = $result->fetch_assoc();
+            $product = new Product($row['id'], $row['name'], $row['description'], $row['price'], $row['quantity']);
+
+            return $product;
+        }
+
+        return false;
+    }
+
     static public function AddProduct($newName, $newDesc, $newPrice) {
         $sql = "INSERT INTO Product (name, description, price) VALUES ('$newName', '$newDesc', '$newPrice')";
         $result = self::$connection->query($sql);
