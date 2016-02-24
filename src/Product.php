@@ -33,7 +33,7 @@ class Product {
     private $itemDesc;
     private $price;
     private $quantity;
-    
+
     static private $connection;
 
     static public function SetConnection(mysqli $newConnection) {
@@ -106,8 +106,7 @@ class Product {
         $this->price = $newPrice;
     }
 
-    public function setQuantity($quantity)
-    {
+    public function setQuantity($quantity) {
         $this->quantity = $quantity;
     }
 

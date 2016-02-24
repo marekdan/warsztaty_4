@@ -1,7 +1,6 @@
 <?php
 
-require_once ('panelHeader.php');
-
+require_once('panelHeader.php');
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $admin = Admin::RegisterAdmin($_POST['email'], $_POST['password1'], $_POST['password2']);

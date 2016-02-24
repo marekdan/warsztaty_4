@@ -1,6 +1,6 @@
 <?php
 
-require_once ('panelHeader.php');
+require_once('panelHeader.php');
 
 ?>
 
